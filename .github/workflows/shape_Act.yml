@@ -13,7 +13,7 @@ on:
 # trigger every Monday to Friday at 0:00 UTC
 # + 8,為台灣時區
 # '0 10 * * *',實際為台灣時間每日18點,testing  
-    - cron: '59 15 * * *'
+  - cron: '30 * * * *'
 
 # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,26 +28,26 @@ jobs:
 # Steps represent a sequence of tasks that will be executed as part of the job
    steps:
 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
+     - uses: actions/checkout@v3
 
-    - name: install required modules
-    - run: pip install -r request1225.txt
+     - name: install required modules
+     - run: pip install -r request1225.txt
 
-    - name: Remove Chrome
-      run: sudo apt purge google-chrome-stable
-    - name: Remove default Chromium
-      run: sudo apt purge chromium-browser
-    - name: install Chromium
-      run: sudo apt-get install -y chromium-browser
+     - name: Remove Chrome
+       run: sudo apt purge google-chrome-stable
+     - name: Remove default Chromium
+       run: sudo apt purge chromium-browser
+     - name: install Chromium
+       run: sudo apt-get install -y chromium-browser
 
-    - name: check Chromium version
-      run: chromedriver --version
+     - name: check Chromium version
+       run: chromedriver --version
 
-    - name: test selenium crawler
-      run: python shape_selenium1225.py
+     - name: test selenium crawler
+       run: python shape_selenium1225.py
       
-    - name: check file list
-      run: ls -al
+     - name: check file list
+       run: ls -al
 
 #       - name: compress files   # zipfile module is not working
 #         run: zip -r test.zip result
@@ -56,41 +56,41 @@ jobs:
 #         run: ls -al
 
 
-    - name: send telegram message
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
+     - name: send telegram message
+       uses: appleboy/telegram-action@master
+       with:
+         to: ${{ secrets.TELEGRAM_CHAT_ID }}
+         token: ${{ secrets.TELEGRAM_TOKEN }}
+         message: |
           From: ${{ github.event.sender.login }}
-        document: 三多偉力健綜合優蛋白.html
+         document: 三多偉力健綜合優蛋白.html
           
-    - name: send telegram message2
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          From: ${{ github.event.sender.login }}
-        document: 三多偉力健綜合優蛋白.xlsx
+     - name: send telegram message2
+       uses: appleboy/telegram-action@master
+       with:
+         to: ${{ secrets.TELEGRAM_CHAT_ID }}
+         token: ${{ secrets.TELEGRAM_TOKEN }}
+         message: |
+           From: ${{ github.event.sender.login }}
+         document: 三多偉力健綜合優蛋白.xlsx
           
-    - name: send telegram message
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          From: ${{ github.event.sender.login }}
-        document: 三多偉力健鉻營養素.html
+     - name: send telegram message
+       uses: appleboy/telegram-action@master
+       with:
+         to: ${{ secrets.TELEGRAM_CHAT_ID }}
+         token: ${{ secrets.TELEGRAM_TOKEN }}
+         message: |
+           From: ${{ github.event.sender.login }}
+         document: 三多偉力健鉻營養素.html
           
-    - name: send telegram message2
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          From: ${{ github.event.sender.login }}
-        document: 三多偉力健鉻營養素.xlsx
+     - name: send telegram message2
+       uses: appleboy/telegram-action@master
+       with:
+         to: ${{ secrets.TELEGRAM_CHAT_ID }}
+         token: ${{ secrets.TELEGRAM_TOKEN }}
+         message: |
+           From: ${{ github.event.sender.login }}
+         document: 三多偉力健鉻營養素.xlsx
           
 #       - name: send telegram message
 #         uses: appleboy/telegram-action@master
